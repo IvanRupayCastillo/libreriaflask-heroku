@@ -1,0 +1,336 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: LibreriaFlask
+  contact: {}
+host: 127.0.0.1:5000
+basePath: /
+schemes:
+- https
+consumes:
+- application/json
+produces:
+- application/json
+paths:
+  /autores:
+    get:
+      description: Ruta que devuelve todos los autores de la base de datos
+      summary: /autores
+      tags:
+      - Autor
+      operationId: /autores
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+    post:
+      description: Ruta para agregar un nuevo autor
+      summary: /autores
+      tags:
+      - Autor
+      operationId: Post/autores
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1autoresrequest'
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /autor/2:
+    get:
+      description: Ruta que devuelve un autor segun su id
+      summary: /autor/:id
+      tags:
+      - Autor
+      operationId: /autor/:id
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /autor/id:
+    put:
+      description: ruta que actualiza un autor
+      summary: /autor/:id1
+      tags:
+      - Autor
+      operationId: /autor/:id1
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /:
+    delete:
+      description: 'Ruta para eliminar un autor segun su id '
+      summary: /autor/:id2
+      tags:
+      - Autor
+      operationId: /autor/:id2
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /categorias:
+    get:
+      description: Ruta que devuelve todas las categorias
+      summary: /categorias
+      tags:
+      - Categorias
+      operationId: /categorias
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /categoria:
+    post:
+      description: ruta que me permite añadir una categoria
+      summary: /categoria
+      tags:
+      - Categorias
+      operationId: /categoria
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /libro:
+    post:
+      description: Ruta para crear un nuevo libro
+      summary: /libro
+      tags:
+      - Libro
+      operationId: /libro
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1librorequest'
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /libros:
+    get:
+      description: 'Metodo que devuelve todos sus libros con sus autores y categorias '
+      summary: /libros
+      tags:
+      - Libro
+      operationId: /libros
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /RegistroLibroSede:
+    post:
+      description: Ruta que graba un libro en varias sedes
+      summary: /RegistroLibroSede
+      tags:
+      - Libro
+      operationId: /RegistroLibroSede
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1RegistroLibroSedeRequest'
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /sede:
+    post:
+      description: 'Ruta para añadir sedes '
+      summary: /sede
+      tags:
+      - Sede
+      operationId: /sede
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: Body
+        in: body
+        required: true
+        description: ''
+        schema:
+          $ref: '#/definitions/~1sederequest'
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /sedeLibros/1:
+    get:
+      description: Ruta para devolver la  lista de libros por categoria
+      summary: /sedeLibros/1
+      tags:
+      - Sede
+      operationId: /sedeLibros/1
+      deprecated: false
+      produces:
+      - application/json
+      parameters: []
+      responses:
+        200:
+          description: ''
+          headers: {}
+  /busquedaLibroSedeCat:
+    get:
+      description: Ruta para devolver los libros por categoria y sede
+      summary: /busquedaLibroSedeCat
+      tags:
+      - Sede
+      operationId: /busquedaLibroSedeCat
+      deprecated: false
+      produces:
+      - application/json
+      parameters:
+      - name: categoria
+        in: query
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      - name: sede
+        in: query
+        required: true
+        type: integer
+        format: int32
+        description: ''
+      responses:
+        200:
+          description: ''
+          headers: {}
+definitions:
+  /autoresrequest:
+    title: /autoresrequest
+    example:
+      autor_nombre: Ivan Rupay Castillo
+    type: object
+    properties:
+      autor_nombre:
+        type: string
+    required:
+    - autor_nombre
+  /librorequest:
+    title: /librorequest
+    example:
+      libro_nombre: Las cuatro copas
+      libro_cant: 7
+      libro_edicion: 2012
+      autor_id: 2
+      categoria_id: 1
+    type: object
+    properties:
+      libro_nombre:
+        type: string
+      libro_cant:
+        type: integer
+        format: int32
+      libro_edicion:
+        type: integer
+        format: int32
+      autor_id:
+        type: string
+      categoria_id:
+        type: string
+    required:
+    - libro_nombre
+    - libro_cant
+    - libro_edicion
+    - autor_id
+    - categoria_id
+  /RegistroLibroSedeRequest:
+    title: /RegistroLibroSedeRequest
+    example:
+      libro_id: 1
+      sedes:
+      - sede: 1
+      - sede: 2
+    type: object
+    properties:
+      libro_id:
+        type: integer
+        format: int32
+      sedes:
+        type: array
+        items:
+          $ref: '#/definitions/Sede'
+    required:
+    - libro_id
+    - sedes
+  Sede:
+    title: Sede
+    example:
+      sede: 1
+    type: object
+    properties:
+      sede:
+        type: integer
+        format: int32
+    required:
+    - sede
+  /sederequest:
+    title: /sederequest
+    example:
+      sede_ubicacion: Av los lagartos 432
+      sede_latitud: -9.252314
+      sede_longitud: -5.225211
+    type: object
+    properties:
+      sede_ubicacion:
+        type: string
+      sede_latitud:
+        type: string
+      sede_longitud:
+        type: string
+    required:
+    - sede_ubicacion
+    - sede_latitud
+    - sede_longitud
+tags:
+- name: Autor
+- name: Categorias
+- name: Libro
+- name: Sede
